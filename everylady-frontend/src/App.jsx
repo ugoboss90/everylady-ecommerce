@@ -74,7 +74,7 @@ function App() {
   useEffect(() => {
     console.log("Fetching products...");
     axios
-      .get("http://localhost:5000/api/products")
+      .get("https://everylady-ecommerce.onrender.com/api/products")
       .then((response) => {
         console.log("Products fetched:", response.data);
         setProducts(response.data);
