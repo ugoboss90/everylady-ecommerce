@@ -1,6 +1,8 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
-app.use(express.json()); // Middleware to parse JSON bodies
+app.use(express.json());
+app.use(cors()); // Enable CORS for all origins (for development; restrict in production)
 
 let products = [
   { id: 1, name: "Dress", price: 29.99 },
@@ -13,10 +15,9 @@ app.get("/api/products", (req, res) => {
 
 app.post("/api/products", (req, res) => {
   const newProduct = req.body;
-  // Validate and assign a unique ID (simplified)
-  newProduct.id = products.length + 1; // Increment ID (for demo; use a better method in production)
+  newProduct.id = products.length + 1; // Simplified ID assignment
   products.push(newProduct);
-  res.status(201).json(newProduct); // 201 Created
+  res.status(201).json(newProduct);
 });
 
 const PORT = process.env.PORT || 5000;
